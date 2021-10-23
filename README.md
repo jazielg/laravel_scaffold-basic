@@ -30,9 +30,18 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 ##
 
 ```bash
+PHP 7.4.3
+Laravel v8.65
+Bootstrap v4.6.0
+jQuery v3.5.1
+```
+
+```bash
 # Iniciar projeto
 composer create-project laravel/laravel example-app
+```
 
+```bash
 # AUTENTICAÇÃO - Laravel UI (https://laravel.com/docs/7.x/authentication)
 composer require laravel/ui
 
@@ -40,7 +49,12 @@ php artisan ui vue --auth
 npm install && npm run dev
 # Copiar os arquivos para css e js para public, e colocar o bootstrap 4.6.0 dentro deles
 # Criar jquery e importar em layouts
+```
 
+```bash
+# Criar migrações, model, factory e controller
+php artisan make:model Post -mc --resource
+php artisan make:model Category -mcf --resource
 ```
 
 ## License
