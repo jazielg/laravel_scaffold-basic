@@ -30,17 +30,18 @@
                       </div>
 
                       <div class="form-group">
-                        {{ Form::label('body', 'Conteúdo'); }}
+                        {{ Form::label('body', 'Conteúdo') }}
                         {{ Form::textarea('body', null, array('required', 'id' => 'body', 'class'=>'form-control', 'placeholder'=>'Digite o conteudo')) }}
                       </div>
 
                       <div class="form-group">
-                        {{ Form::label('categories', 'Categoria'); }}
+                        {{ Form::label('categories', 'Categoria') }}
                         {{ Form::select('category_id',  \App\Helpers\ListHelper::getCategories(), null, ['id'=>'category_id', 'class' => 'form-control', 'data-placeholder' => 'Escolha:', 'required']) }}
                       </div>
 
-                      <div class="form-group">
-                        {{ Form::submit('Submit', ['class' => 'btn btn-primary float-right']) }}
+                      <div class="form-group d-flex justify-content-between align-items-center">
+                        <a href="{{ route('posts.index') }}">Voltar</a>
+                        {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
                       </div>
 
                     {{ Form::close() }}

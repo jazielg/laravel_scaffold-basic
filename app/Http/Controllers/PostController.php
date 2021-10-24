@@ -13,9 +13,23 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
+        $posts = Post::query();
+
+        if (request()->filled('active')) {
+            $posts->where('active', request('active'));
+        }
+
+        if (request()->filled('category_id')) {
+            $posts->where('category_id', request('category_id'));
+        }
+
+        if (request()->filled('title')) {
+            $posts->where('title', 'LIKE', '%' . request('title') . '%');
+        }
+
+        $posts = $posts->paginate(2);
 
         return view('posts.index', compact('posts'));
     }

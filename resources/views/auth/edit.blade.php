@@ -20,7 +20,7 @@
                       </div>
 
                       <div class="form-group">
-                        {{ Form::label('email', 'Email'); }}
+                        {{ Form::label('email', 'Email') }}
                         {{ Form::email('email', null , array('required', 'id' => 'email', 'class'=>'form-control', 'placeholder'=>'Digite seu email')) }}
                       </div>
 
