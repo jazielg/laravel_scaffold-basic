@@ -44,7 +44,7 @@ class PostController extends Controller
 
         Post::create($attributes);
 
-        return redirect('/')->with('success', 'Post Created!');
+        return redirect('/')->with('status', 'Post Created!');
     }
 
     /**
@@ -82,7 +82,7 @@ class PostController extends Controller
 
         $post->update($attributes);
 
-        return back()->with('success', 'Post Updated!');
+        return back()->with('status', 'Post Updated!');
     }
 
     /**

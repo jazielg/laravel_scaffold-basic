@@ -47,14 +47,19 @@ composer require laravel/ui
 
 php artisan ui vue --auth
 npm install && npm run dev
-# Copiar os arquivos para css e js para public, e colocar o bootstrap 4.6.0 dentro deles
-# Criar jquery e importar em layouts
+# Copiar os arquivos css e js de resources para public, e colocar o bootstrap 4.6.0 dentro deles
+# Criar jquery em public/js e importar em resources/views/layouts/app.blade.php
 ```
 
 ```bash
 # Criar migrações, model, factory e controller
 php artisan make:model Post -mc --resource
 php artisan make:model Category -mcf --resource
+```
+
+```bash
+# Laravel Forms - https://laravelcollective.com/docs/6.x/html
+composer require laravelcollective/html
 ```
 
 ## License
