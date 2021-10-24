@@ -33,9 +33,15 @@
                             <th scope="row">{{ $post->id }}</th>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->active }}</td>
-                            <td>{{ $post->created_at }}</td>
+                            <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</td>
                             <td>
-                              <a href="/posts/{{ $post->id }}/edit">Editar</a>
+                              <a href="{{ route('posts.edit', $post) }}"><i class="fa fa-edit"></i></a>
+
+                              <form action="{{ route('posts.destroy', $post) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="border-0 text-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                              </form>
                             </td>
                           </tr>
                         @endforeach
