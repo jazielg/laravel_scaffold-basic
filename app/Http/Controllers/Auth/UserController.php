@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->user = User::find(Auth::id());
+        $this->user = User::findOrFail(Auth::id());
     }
 
     public function edit()
@@ -29,8 +29,8 @@ class UserController extends Controller
         $user = $this->user;
 
         $attributes = request()->validate([
-            'name' => 'required',
-            'email' => ['required', Rule::unique('users', 'email')->ignore($user)],
+            'name' => 'required|min:3|max:255',
+            'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user)],
         ]);
 
         $user->update($attributes);

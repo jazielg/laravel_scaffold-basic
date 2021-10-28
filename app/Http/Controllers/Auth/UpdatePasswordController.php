@@ -19,11 +19,11 @@ class UpdatePasswordController extends Controller
     public function update(Request $request)
     {
         $attributes = request()->validate([
-            'old_password' => 'required|min:6',
-            'password' => 'required|confirmed|min:6',
+            'old_password' => 'required|min:8',
+            'password' => 'required|confirmed|min:8',
         ]);
 
-        $user = User::find(Auth::id());
+        $user = User::findOrFail(Auth::id());
 
         if (!Hash::check($attributes['old_password'], $user->password)) {
             throw ValidationException::withMessages(['password_old' => 'Senha atual incorreta.']);

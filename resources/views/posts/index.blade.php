@@ -1,6 +1,9 @@
 @extends('layouts.app') @section('content')
 <div class="container">
   <div class="row justify-content-center">
+    <div class="px-3 py-3 mx-auto text-center">
+      <h1 class="display-5">Posts</h1>
+    </div>
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">Pesquisa de Posts</div>
@@ -25,8 +28,8 @@
                 {{ Form::select('active',  array('' => 'Selecione', '0' => 'Inativo', '1' => 'Ativo'), null, ['id'=>'active', 'class' => 'form-control', 'data-placeholder' => 'Escolha:']) }}
               </div>
 
-              <div class="form-group col-md-3">
-                {{ Form::submit('Submit', ['class' => 'btn btn-primary mt-4']) }}
+              <div class="form-group col-md-3 mt-2">
+                {{ Form::submit('Pesquisar', ['class' => 'btn btn-primary mt-4']) }}
               </div>
 
             </div>
@@ -38,9 +41,13 @@
 
     <div class="col-md-12 mt-5">
       <div class="card">
-        <div class="card-header">Listagem de Posts</div>
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span>
+            Listagem de Posts
+          </span> 
+          <a href="/posts/create" class="btn btn-primary">Novo registro</a>
+        </div>
 
-        <a href="/posts/create">Criar</a>
 
         <div class="card-body">
           @if (session('status'))
@@ -49,7 +56,7 @@
           </div>
           @endif
 
-          <table class="table table-striped">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -66,22 +73,28 @@
               <tr>
                 <th scope="row">{{ $post->id }}</th>
                 <td>{{ $post->title }}</td>
-                <td>{{ $post->active }}</td>
+                <td>
+                  @if($post->active)
+                    <span class="badge badge-success">Ativo</span> 
+                  @else 
+                    <span class="badge badge-danger">Inativo</span>
+                  @endif
+                </td>
                 <td>{{ $post->category->name }}</td>
                 <td>
                   {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}
                 </td>
-                <td>
-                  <a href="{{ route('posts.edit', $post) }}"><i class="fa fa-edit"></i></a>
-
-                  <form action="{{
-                                            route('posts.destroy', $post)
-                                        }}" method="post">
-                    @csrf @method('DELETE')
-                    <button type="submit" class="border-0 text-danger">
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                  </form>
+                <td style="width:8%">
+                  <div class="d-flex align-items-center justify-content-around">
+                    <a href="{{ route('posts.edit', $post) }}"><i class="fa fa-edit"></i></a>
+  
+                    <form action="{{route('posts.destroy', $post)}}" method="post">
+                      @csrf @method('DELETE')
+                      <button type="submit" class="border-0 text-danger bg-white">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    </form>
+                  </div>
                 </td>
               </tr>
               @endforeach
