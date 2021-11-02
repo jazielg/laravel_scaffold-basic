@@ -64,12 +64,12 @@
                 <th scope="col">Ativo</th>
                 <th scope="col">Categoria</th>
                 <th scope="col">Criado em</th>
-                <th scope="col">Ações</th>
+                <th scope="col" class="text-center">Ações</th>
               </tr>
             </thead>
 
             <tbody>
-              @foreach ($posts as $post)
+              @forelse ($posts as $post)
               <tr>
                 <th scope="row">{{ $post->id }}</th>
                 <td>{{ $post->title }}</td>
@@ -84,20 +84,27 @@
                 <td>
                   {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}
                 </td>
-                <td style="width:8%">
+                <td>
                   <div class="d-flex align-items-center justify-content-around">
-                    <a href="{{ route('posts.edit', $post) }}"><i class="fa fa-edit"></i></a>
+                    <a href="{{ route('posts.show', $post) }}" title="Visualizar"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                    <a href="{{ route('posts.edit', $post) }}" title="Editar"><i class="fa fa-edit" aria-hidden="true"></i></a>
   
                     <form action="{{route('posts.destroy', $post)}}" method="post">
-                      @csrf @method('DELETE')
-                      <button type="submit" class="border-0 text-danger bg-white">
+                      @csrf 
+                      @method('DELETE')
+                      <button type="submit" class="border-0 text-danger bg-white" title="Excluir">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                       </button>
                     </form>
                   </div>
                 </td>
               </tr>
-              @endforeach
+              @empty
+              <tr>
+                <td>Sem registros.</td>
+              </tr>
+              @endforelse
             </tbody>
           </table>
 

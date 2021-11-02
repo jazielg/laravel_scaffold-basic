@@ -10,23 +10,16 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    private $user;
-
-    public function __construct()
-    {
-        $this->user = User::findOrFail(Auth::id());
-    }
-
     public function edit()
     {
-        $data = $this->user;
+        $data = User::findOrFail(Auth::id());
 
         return view('auth.edit', compact('data'));
     }
 
     public function update(Request $request)
     {
-        $user = $this->user;
+        $user = User::findOrFail(Auth::id());
 
         $attributes = request()->validate([
             'name' => 'required|min:3|max:255',

@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                  @if ($action === 'insert') 
+                  @if ($action === 'create') 
                     Cadastrar 
                   @else 
                     Editar 
@@ -17,7 +17,7 @@
                 <div class="card-body">
                     @include('components.info')
 
-                    @if ($action ==='insert')
+                    @if ($action ==='create')
                       {{ Form::open(array('route' => "posts.store" )) }}
                     @else
                       {{ Form::model($data, array('route' => array('posts.update', $data), 'method' => 'PUT')) }}
@@ -41,7 +41,7 @@
 
                       <div class="form-group d-flex justify-content-between align-items-center">
                         <a href="{{ route('posts.index') }}">Voltar</a>
-                        {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+                        {{ Form::submit('Salvar', ['class' => 'btn btn-primary']) }}
                       </div>
 
                     {{ Form::close() }}

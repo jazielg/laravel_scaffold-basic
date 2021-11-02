@@ -29,7 +29,7 @@
                       </div>
 
                       <div class="form-group">
-                        {{ Form::submit('Submit', ['class' => 'btn btn-primary float-right']) }}
+                        {{ Form::submit('Salvar', ['class' => 'btn btn-primary float-right']) }}
                       </div>
 
                     {{ Form::close() }}

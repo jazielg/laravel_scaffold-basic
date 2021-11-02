@@ -33,10 +33,10 @@ composer create-project laravel/laravel example-app
 # AUTENTICAÇÃO - Laravel UI (https://laravel.com/docs/7.x/authentication)
 composer require laravel/ui
 
-php artisan ui vue --auth
+php artisan ui bootstrap --auth
 npm install && npm run dev
-# Copiar os arquivos css e js de resources para public, e colocar o bootstrap 4.6.0 dentro deles
-# Criar jquery em public/js e importar em resources/views/layouts/app.blade.php
+# Copiar a pasta css e js de resources para public, e colocar o bootstrap 4.6.0 dentro deles
+# Criar jquery.js em public/js e importar em resources/views/layouts/app.blade.php
 ```
 
 ```bash

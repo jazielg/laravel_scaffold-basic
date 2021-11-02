@@ -41,7 +41,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.form')->with('action', 'insert');
+        return view('posts.form')->with('action', 'create');
     }
 
     /**
@@ -56,9 +56,9 @@ class PostController extends Controller
             'user_id' => request()->user()->id,
         ]);
 
-        Post::create($attributes);
+        $post = Post::create($attributes);
 
-        return redirect('/')->with('success', 'Post Created!');
+        return redirect()->route('posts.show', [$post])->with('success', 'Post Created!');
     }
 
     /**
@@ -112,10 +112,10 @@ class PostController extends Controller
         return back()->with('success', 'Post Deleted!');
     }
 
-    protected function validatePost(Post $post = null)
+    protected function validatePost()
     {
         return request()->validate([
-            'title' => 'required',
+            'title' => 'required|max:255',
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')]
         ]);
